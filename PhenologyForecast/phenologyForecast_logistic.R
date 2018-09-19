@@ -5,6 +5,7 @@ library("MODISTools")
 library("ecoforecastR")
 library("rjags")
 library("runjags")
+library("jsonlite")
 
 ##' Download Phenocam data
 ##' 
@@ -264,13 +265,13 @@ phenologyForecast <- function(siteName,URL,forecastLength=0,startDate=FALSE,endD
 
 siteData <- read.csv("phenologyForecastSites.csv",header=TRUE)
 
-#startDate <- as.Date("2008-04-04")
-#endDate <- as.Date("2018-09-13")
-#siteName=as.character(siteData[1,1])
-#URL=as.character(siteData[1,4])
-#forecastLength = 500
-#lat=as.numeric(siteData[1,2])
-#long=as.numeric(siteData[1,3])
+startDate <- as.Date("2008-04-04")
+endDate <- as.Date("2018-09-18")
+siteName=as.character(siteData[1,1])
+URL=as.character(siteData[1,4])
+forecastLength = 500
+lat=as.numeric(siteData[1,2])
+long=as.numeric(siteData[1,3])
 
 out.burn <- phenologyForecast(siteName=as.character(siteData[1,1]),URL=as.character(siteData[1,4]),forecastLength = 500,lat=as.numeric(siteData[1,2]),long=as.numeric(siteData[1,3]),startDate=as.Date("2008-04-04"),endDate=as.Date("2018-09-13"))
 URL <- as.character(siteData[1,4])
