@@ -2,7 +2,7 @@
 #setwd(paste(getwd(),"/PhenologyForecast",sep=""))
 #install.packages("devtools", repos='http://cran.us.r-project.org')
 library("devtools")
-install_github("khfkens/MODISTools")
+install_github("khufkens/MODISTools")
 library("MODISTools")
 library("ecoforecastR")
 library("rjags")
