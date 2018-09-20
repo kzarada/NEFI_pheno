@@ -60,7 +60,8 @@ phenologyForecast <- function(siteName,URL,forecastLength=0,startDate=FALSE,endD
   metric <- "NDVI"
   MODISfileName <- paste(siteName,"_",metric,"_MOD13Q1_",startDate,"_",endDate,".csv",sep="")
   if(!file.exists(MODISfileName)){
-    directory <- getwd()
+    directory <- paste(getwd(),"/dataFiles",sep="")
+    #directory <- getwd()
     mt_subset(product = "MOD13Q1",lat=lat,lon=long,band=paste("250m_16_days_",metric,sep=""),start=startDate,end=endDate,site_name = paste(siteName,"_",metric,sep=""),out_dir = directory,internal=FALSE)
   }
   dat <- read.csv(MODISfileName,header=TRUE,skip=15)
@@ -70,7 +71,9 @@ phenologyForecast <- function(siteName,URL,forecastLength=0,startDate=FALSE,endD
   for(i in 1:length(MODIS.x)){
     m[which(x==MODIS.x[i])] <- MODIS.y[i]
   }
-  GOES.data <- read.csv(paste("GOES_NDVI_",siteName,"_2017-07-01_2018-06-30_noon.csv",sep=""),header=FALSE)
+  GOES.data <- read.csv(paste("dataFiles/GOES_NDVI_",siteName,"_2017-07-01_2018-06-30_noon.csv",sep=""),header=FALSE)
+  #GOES.data <- read.csv(paste(siteName,"_2017-07-01_2018-06-30_noon.csv",sep=""),header=FALSE)
+  
   GOES.x <- as.Date(rep(NA,ncol(GOES.data)))
   for(d in 1:ncol(GOES.data)){
     if(GOES.data[1,d]<182){
@@ -273,6 +276,7 @@ phenologyForecast <- function(siteName,URL,forecastLength=0,startDate=FALSE,endD
   }
 }
 
+setwd("/dataFiles")
 siteData <- read.csv("phenologyForecastSites.csv",header=TRUE)
 
 #startDate <- as.Date("2008-04-04")
