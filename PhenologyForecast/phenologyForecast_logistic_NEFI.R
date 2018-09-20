@@ -1,6 +1,7 @@
 #!/usr/bin/env Rscript
 #setwd(paste(getwd(),"/PhenologyForecast",sep=""))
-install.packages("MODISTools")
+library(devtools)
+install_github("khfkens/MODISTools")
 library("MODISTools")
 library("ecoforecastR")
 library("rjags")
