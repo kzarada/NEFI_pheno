@@ -302,7 +302,8 @@ x <-  as.Date(phenoData$date)
 x <- c(x,seq.Date(from=x[length(x)],by="day",length.out=500))
 p <- c(p,rep(x=NA,times=forecastLength)) #Padded with NA's to forecast for one month into the future
 ci <- apply(as.matrix(out.burn),2,quantile,c(0.025,0.5,0.975)) #Computes the 95% credible interval (CI)
+pdf("phenoplot.pdf")
 plot(x=x,y=p,xlim=range(x),ylim=c(-0.2,1.2),ylab="Greenness",xlab="Time",pch=20)
 ciEnvelope(x,ci[1,],ci[3,],col="lightblue")
 lines(x,ci[2,],col="red")
-
+dev.off()
