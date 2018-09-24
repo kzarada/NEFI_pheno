@@ -61,7 +61,7 @@ ciEnvelope <- function(x,ylo,yhi,...){
 phenologyForecast <- function(siteName,URL,forecastLength=0,startDate=FALSE,endDate=FALSE,lat,long){
   ###Download PhenoCam data and format 
   #phenoData <- download.phenocam(URL) 
-  load("/usr2/postdoc/kzarada/NEFI/NEFI_pheno/PhenologyForecast/dataFiles/HarvardForest_2008-04-04_2018-09-24 12/17/34_phenoData.RData")
+  load("/usr2/postdoc/kzarada/NEFI/NEFI_pheno/PhenologyForecast/dataFiles/HarvardForest_2008-04-04_2018-09-24 12:17:34_phenoData.RData")
   p <- phenoData$gcc_mean
   x <-  as.Date(phenoData$date)
   
