@@ -13,7 +13,7 @@ library("devtools")
 install_github("khufkens/MODISTools")
 install_github("EcoForecast/ecoforecastR")
 install.packages("rjags", repos='http://cran.us.r-project.org')
-install.packages("runjags", repos='http://cran.us.r-project.org', dependencies = TRUE)
+install.packages("runjags",configure.args = c("--with-jags-lib=/share/pkg/jags/4.0.0/install/lib"), repos='http://cran.us.r-project.org')
 install.packages("jsonlite", repos='http://cran.us.r-project.org')
 
 #call packages
