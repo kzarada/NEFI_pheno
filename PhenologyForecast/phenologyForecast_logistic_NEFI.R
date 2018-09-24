@@ -82,7 +82,7 @@ phenologyForecast <- function(siteName,URL,forecastLength=0,startDate=FALSE,endD
     #directory <- getwd()
     mt_subset(product = "MOD13Q1",lat=lat,lon=long,band=paste("250m_16_days_",metric,sep=""),start=startDate,end=endDate,site_name = paste(siteName,"_",metric,sep=""),out_dir = directory,internal=FALSE)
   }
-  dat <- read.csv(MODISfileName,header=TRUE,skip=15)
+  dat <- read.csv(paste(getwd(), "/dataFiles/",MODISfileName, sep = ""),header=TRUE,skip=15)
   MODIS.x <- as.Date(dat$calendar_date)
   MODIS.y <- as.numeric(dat$data)/10000
   m <- rep(NA,length(p))
@@ -307,8 +307,7 @@ siteData <- read.csv("phenologyForecastSites.csv",header=TRUE)
 out.burn <- phenologyForecast(siteName=as.character(siteData[1,1]),URL=as.character(siteData[1,4]),forecastLength = 500,lat=as.numeric(siteData[1,2]),long=as.numeric(siteData[1,3]),startDate=as.Date("2008-04-04"), endDate = as.Date("2018-09-24"))
 #URL <- as.character(siteData[1,4])
 #phenoData <- download.phenocam(URL)
-#load("/usr2/postdoc/kzarada/NEFI/NEFI_pheno/PhenologyForecast/dataFiles/HarvardForest_2008-04-04_2018-09-24_phenoData.RData")
-
+load("/usr2/postdoc/kzarada/NEFI/NEFI_pheno/PhenologyForecast/dataFiles/HarvardForest_2008-04-04_2018-09-24_phenoData.RData")
 p <- phenoData$gcc_mean
 x <-  as.Date(phenoData$date)
 x <- c(x,seq.Date(from=x[length(x)],by="day",length.out=500))
