@@ -1,18 +1,28 @@
 #!/usr/bin/env Rscript
 #setwd(paste(getwd(),"/PhenologyForecast",sep=""))
-#install.packages("devtools", repos='http://cran.us.r-project.org')
+
+setwd("/usr2/postdoc/kzarada/NEFI/NEFI_pheno/PhenologyForecast")
+#changing lib path so file download, I didn't have access to the other file path 
 .libPaths("/usr2/postdoc/kzarada/R/library")
+
+#install devtools so we can git install the following packages
+install.packages("devtools", repos='http://cran.us.r-project.org')
 library("devtools")
-#install_github("khufkens/MODISTools")
-#install_github("EcoForecast/ecoforecastR")
-#install.packages("rjags", repos='http://cran.us.r-project.org')
-#install.packages("runjags", repos='http://cran.us.r-project.org', dependencies = TRUE)
-#install.packages("jsonlite", repos='http://cran.us.r-project.org')
+
+#install packages 
+install_github("khufkens/MODISTools")
+install_github("EcoForecast/ecoforecastR")
+install.packages("rjags", repos='http://cran.us.r-project.org')
+install.packages("runjags", repos='http://cran.us.r-project.org', dependencies = TRUE)
+install.packages("jsonlite", repos='http://cran.us.r-project.org')
+
+#call packages
 library("MODISTools")
 library("ecoforecastR")
 library("rjags")
-#library("runjags")
+library("runjags")
 library("jsonlite")
+
 
 ##' Download Phenocam data
 ##' 
@@ -283,7 +293,7 @@ phenologyForecast <- function(siteName,URL,forecastLength=0,startDate=FALSE,endD
   }
 }
 
-setwd("/dataFiles")
+setwd(paste(getwd(),"/dataFiles",sep=""))
 siteData <- read.csv("phenologyForecastSites.csv",header=TRUE)
 
 #startDate <- as.Date("2008-04-04")
