@@ -293,7 +293,6 @@ phenologyForecast <- function(siteName,URL,forecastLength=0,startDate=FALSE,endD
   }
 }
 
-setwd(paste(getwd(),"/dataFiles",sep=""))
 siteData <- read.csv("phenologyForecastSites.csv",header=TRUE)
 
 #startDate <- as.Date("2008-04-04")
