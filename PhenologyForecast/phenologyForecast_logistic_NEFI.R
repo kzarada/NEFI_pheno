@@ -32,7 +32,7 @@ download.phenocam <- function(URL) {
   if (length(URL) == 1 & is.character(URL) & substr(URL,1,4)=="http") {
     
     ## read data
-    dat <- read.csv(URL,skip = 22)
+    dat <- read.csv(URL, skip = 22)
     
     ## convert date
     dat$date <- as.Date(as.character(dat$date))
@@ -60,7 +60,8 @@ ciEnvelope <- function(x,ylo,yhi,...){
 ##' @param forecastLength The number of days in the future you want to forecast
 phenologyForecast <- function(siteName,URL,forecastLength=0,startDate=FALSE,endDate=FALSE,lat,long){
   ###Download PhenoCam data and format 
-  phenoData <- download.phenocam(URL)
+  #phenoData <- download.phenocam(URL) 
+  load("/usr2/postdoc/kzarada/NEFI/NEFI_pheno/PhenologyForecast/dataFiles/HarvardForest_2008-04-04_2018-09-24 12/17/34_phenoData.RData")
   p <- phenoData$gcc_mean
   x <-  as.Date(phenoData$date)
   
@@ -304,7 +305,7 @@ siteData <- read.csv("phenologyForecastSites.csv",header=TRUE)
 #long=as.numeric(siteData[1,3])
 
 out.burn <- phenologyForecast(siteName=as.character(siteData[1,1]),URL=as.character(siteData[1,4]),forecastLength = 500,lat=as.numeric(siteData[1,2]),long=as.numeric(siteData[1,3]),startDate=as.Date("2008-04-04"))
-URL <- as.character(siteData[1,4])
+URL <- as.character(siteData[2,4])
 phenoData <- download.phenocam(URL)
 p <- phenoData$gcc_mean
 x <-  as.Date(phenoData$date)
