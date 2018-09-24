@@ -306,7 +306,7 @@ siteData <- read.csv("phenologyForecastSites.csv",header=TRUE)
 
 out.burn <- phenologyForecast(siteName=as.character(siteData[1,1]),URL=as.character(siteData[1,4]),forecastLength = 500,lat=as.numeric(siteData[1,2]),long=as.numeric(siteData[1,3]),startDate=as.Date("2008-04-04"))
 URL <- as.character(siteData[2,4])
-phenoData <- download.phenocam(URL)
+#phenoData <- download.phenocam(URL)
 p <- phenoData$gcc_mean
 x <-  as.Date(phenoData$date)
 x <- c(x,seq.Date(from=x[length(x)],by="day",length.out=500))
