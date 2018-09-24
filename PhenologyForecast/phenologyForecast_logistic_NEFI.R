@@ -27,21 +27,21 @@ library("jsonlite")
 ##' Download Phenocam data
 ##' 
 ##' @param URL  web address where data is located
-#download.phenocam <- function(URL) {
+download.phenocam <- function(URL) {
   ## check that we've been passed a URL
-#  if (length(URL) == 1 & is.character(URL) & substr(URL,1,4)=="http") {
+  if (length(URL) == 1 & is.character(URL) & substr(URL,1,4)=="http") {
     
     ## read data
-#    dat <- read.csv(URL, skip = 22)
+    dat <- read.csv(URL, skip = 22)
     
     ## convert date
-#    dat$date <- as.Date(as.character(dat$date))
+    dat$date <- as.Date(as.character(dat$date))
     
-#    return(dat)
-#  } else {
-#    print(paste("download.phenocam: Input URL not provided correctly",URL))
-#  }
-#}
+    return(dat)
+  } else {
+    print(paste("download.phenocam: Input URL not provided correctly",URL))
+  }
+}
 
 ##' Create the credible interval envelope for plotting
 ##' 
@@ -61,7 +61,7 @@ ciEnvelope <- function(x,ylo,yhi,...){
 phenologyForecast <- function(siteName,URL,forecastLength=0,startDate=FALSE,endDate=FALSE,lat,long){
   ###Download PhenoCam data and format 
   #phenoData <- download.phenocam(URL) 
-  load("/usr2/postdoc/kzarada/NEFI/NEFI_pheno/PhenologyForecast/dataFiles/HarvardForest_2008-04-04_2018-09-24 12:17:34_phenoData.RData")
+  load("/usr2/postdoc/kzarada/NEFI/NEFI_pheno/PhenologyForecast/dataFiles/HarvardForest_2008-04-04_2018-09-24_phenoData.RData")
   p <- phenoData$gcc_mean
   x <-  as.Date(phenoData$date)
   
@@ -308,6 +308,7 @@ out.burn <- phenologyForecast(siteName=as.character(siteData[1,1]),URL=as.charac
 URL <- as.character(siteData[1,4])
 #phenoData <- download.phenocam(URL)
 load("/usr2/postdoc/kzarada/NEFI/NEFI_pheno/PhenologyForecast/dataFiles/HarvardForest_2008-04-04_2018-09-24 12:17:34_phenoData.RData")
+
 p <- phenoData$gcc_mean
 x <-  as.Date(phenoData$date)
 x <- c(x,seq.Date(from=x[length(x)],by="day",length.out=500))
