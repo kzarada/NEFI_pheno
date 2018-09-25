@@ -85,10 +85,9 @@ phenologyForecast <- function(siteName,URL,forecastLength=0,startDate=FALSE,endD
   #  mt_subset(product = "MOD13Q1",lat=lat,lon=long,band=paste("250m_16_days_",metric,sep=""),start=startDate,end=endDate,site_name = paste(siteName,"_",metric,sep=""),out_dir = directory,internal=FALSE)
 #  }
  
-  dat <- as.data.frame(mt_subset(product = "MOD13Q1",lat=lat,lon=long,band=paste("250m_16_days_",metric,sep=""),start=startDate,end=endDate,site_name = paste(siteName,"_",metric,sep=""),internal=TRUE))
-  dat <- dat[-c(1:15),]
-  colnames(dat) <- dat[1,]
-  dat <- dat[-1,]
+  dat <- mt_subset(product = "MOD13Q1",lat=lat,lon=long,band=paste("250m_16_days_",metric,sep=""),start=startDate,end=endDate,site_name = paste(siteName,"_",metric,sep=""),internal=TRUE)
+  dat <- dat$data
+
  # dat <- read.csv(paste(getwd(), "/dataFiles/",MODISfileName, sep = ""),header=TRUE,skip=15)
   MODIS.x <- as.Date(dat$calendar_date)
   MODIS.y <- as.numeric(dat$data)/10000
