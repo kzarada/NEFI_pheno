@@ -85,7 +85,7 @@ phenologyForecast <- function(siteName,URL,forecastLength=0,startDate=FALSE,endD
   #  mt_subset(product = "MOD13Q1",lat=lat,lon=long,band=paste("250m_16_days_",metric,sep=""),start=startDate,end=endDate,site_name = paste(siteName,"_",metric,sep=""),out_dir = directory,internal=FALSE)
 #  }
  
-  dat <- mt_subset(product = "MOD13Q1",lat=lat,lon=long,band=paste("250m_16_days_",metric,sep=""),start=startDate,end=endDate,site_name = paste(siteName,"_",metric,sep=""),internal=TRUE)
+  dat <- as.data.frame(mt_subset(product = "MOD13Q1",lat=lat,lon=long,band=paste("250m_16_days_",metric,sep=""),start=startDate,end=endDate,site_name = paste(siteName,"_",metric,sep=""),internal=TRUE))
   dat <- dat[-c(1:15),]
   colnames(dat) <- dat[1,]
   dat <- dat[-1,]
