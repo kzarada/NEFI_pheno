@@ -1,8 +1,9 @@
 #!/usr/bin/env Rscript
-#setwd(paste(getwd(),"/PhenologyForecast",sep=""))
 
+#FOR GEO RUN: 
 setwd("/usr2/postdoc/kzarada/NEFI/NEFI_pheno/PhenologyForecast")
-#changing lib path so file download, I didn't have access to the other file path 
+
+#FOR GEO RUN: changing lib path so file download, I didn't have access to the other file path 
 .libPaths("/usr2/postdoc/kzarada/R/library")
 
 #install devtools so we can git install the following packages
@@ -61,6 +62,7 @@ ciEnvelope <- function(x,ylo,yhi,...){
 phenologyForecast <- function(siteName,URL,forecastLength=0,startDate=FALSE,endDate=FALSE,lat,long){
   ###Download PhenoCam data and format 
   #phenoData <- download.phenocam(URL) 
+  #need to load already saved phenodata when running on geo
   load("/usr2/postdoc/kzarada/NEFI/NEFI_pheno/PhenologyForecast/dataFiles/HarvardForest_2008-04-04_2018-09-24_phenoData.RData")
   p <- phenoData$gcc_mean
   x <-  as.Date(phenoData$date)
@@ -77,12 +79,15 @@ phenologyForecast <- function(siteName,URL,forecastLength=0,startDate=FALSE,endD
   
   metric <- "NDVI"
   MODISfileName <- paste(siteName,"_",metric,"_MOD13Q1_",startDate,"_",endDate,".csv",sep="")
-  if(!file.exists(MODISfileName)){
-    directory <- paste(getwd(),"/dataFiles",sep="")
+ # if(!file.exists(MODISfileName)){
+  #  directory <- paste(getwd(),"/dataFiles",sep="")
     #directory <- getwd()
-    mt_subset(product = "MOD13Q1",lat=lat,lon=long,band=paste("250m_16_days_",metric,sep=""),start=startDate,end=endDate,site_name = paste(siteName,"_",metric,sep=""),out_dir = directory,internal=FALSE)
-  }
-  dat <- read.csv(paste(getwd(), "/dataFiles/",MODISfileName, sep = ""),header=TRUE,skip=15)
+  #  mt_subset(product = "MOD13Q1",lat=lat,lon=long,band=paste("250m_16_days_",metric,sep=""),start=startDate,end=endDate,site_name = paste(siteName,"_",metric,sep=""),out_dir = directory,internal=FALSE)
+#  }
+ 
+  dat <- mt_subset(product = "MOD13Q1",lat=lat,lon=long,band=paste("250m_16_days_",metric,sep=""),start=startDate,end=endDate,site_name = paste(siteName,"_",metric,sep=""),internal=TRUE)
+
+ # dat <- read.csv(paste(getwd(), "/dataFiles/",MODISfileName, sep = ""),header=TRUE,skip=15)
   MODIS.x <- as.Date(dat$calendar_date)
   MODIS.y <- as.numeric(dat$data)/10000
   m <- rep(NA,length(p))
