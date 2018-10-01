@@ -65,7 +65,7 @@ phenologyForecast <- function(siteName,URL,forecastLength=0,startDate=FALSE,endD
   ###Download PhenoCam data and format 
   #phenoData <- download.phenocam(URL) 
   #need to load already saved phenodata when running on geo
-  load("/usr2/postdoc/kzarada/NEFI/NEFI_pheno/PhenologyForecast/dataFiles/HarvardForest_2018-01-01_2018-09-27_phenoData.RData")
+  load("/usr2/postdoc/kzarada/NEFI/NEFI_pheno/PhenologyForecast/dataFiles/HarvardForest_2018-01-01_2018-10-01_phenoData.RData")
   p <- phenoData$gcc_mean
   x <-  as.Date(phenoData$date)
   
