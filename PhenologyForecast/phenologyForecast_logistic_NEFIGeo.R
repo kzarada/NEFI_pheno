@@ -16,6 +16,7 @@ install_github("EcoForecast/ecoforecastR")
 install.packages("rjags", repos='http://cran.us.r-project.org')
 install.packages("runjags",configure.args = c("--with-jags-lib=/share/pkg/jags/4.0.0/install/lib"), repos='http://cran.us.r-project.org')
 install.packages("jsonlite", repos='http://cran.us.r-project.org')
+install.packages("daymetr", repos='http://cran.us.r-project.org')
 
 #call packages
 library("MODISTools")
@@ -23,6 +24,7 @@ library("ecoforecastR")
 library("rjags")
 library("runjags")
 library("jsonlite")
+library("daymetr")
 
 
 ##' Download Phenocam data
@@ -310,7 +312,7 @@ siteData <- read.csv("phenologyForecastSites.csv",header=TRUE)
 #lat=as.numeric(siteData[1,2])
 #long=as.numeric(siteData[1,3])
 
-out.burn <- phenologyForecast(siteName=as.character(siteData[1,1]),URL=as.character(siteData[1,4]),forecastLength = 100,lat=as.numeric(siteData[1,2]),long=as.numeric(siteData[1,3]),startDate=as.Date("2018-01-01"), endDate = as.Date("2018-09-27")) 
+out.burn <- phenologyForecast(siteName=as.character(siteData[1,1]),URL=as.character(siteData[1,4]),forecastLength = 100,lat=as.numeric(siteData[1,2]),long=as.numeric(siteData[1,3]),startDate=as.Date("2008-04-04"), endDate = as.Date("2018-10-01")) 
 #URL <- as.character(siteData[1,4])
 #phenoData <- download.phenocam(URL)
 forecastLength = 500
