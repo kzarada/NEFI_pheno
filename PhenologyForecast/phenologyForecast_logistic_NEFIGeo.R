@@ -316,7 +316,7 @@ out.burn <- phenologyForecast(siteName=as.character(siteData[1,1]),URL=as.charac
 #URL <- as.character(siteData[1,4])
 #phenoData <- download.phenocam(URL)
 forecastLength = 500
-load("/usr2/postdoc/kzarada/NEFI/NEFI_pheno/PhenologyForecast/dataFiles/HarvardForest_2018-01-01_2018-09-27_phenoData.RData")
+load("/usr2/postdoc/kzarada/NEFI/NEFI_pheno/PhenologyForecast/dataFiles/HarvardForest_2008-04-04_2018-10-01_phenoData.RData")
 p <- phenoData$gcc_mean
 x <-  as.Date(phenoData$date)
 x <- c(x,seq.Date(from=x[length(x)],by="day",length.out=500))
